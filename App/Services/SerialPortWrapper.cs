@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace VideoSwitch.Services
+{
+    public class SerialPortWrapper : ISerialPortService
+    {
+        public SerialPortWrapper(System.IO.Ports.SerialPort serialPort)
+        {
+            _port = serialPort;
+        }
+
+        private System.IO.Ports.SerialPort _port;
+
+        public void SendMessage(string message)
+        {
+            try
+            {
+                _port.Open();
+                _port.Write(message);                
+            }
+            finally
+            {
+                _port.Close();
+            }
+        }
+    }
+}
