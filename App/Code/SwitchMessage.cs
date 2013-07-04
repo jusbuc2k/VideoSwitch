@@ -18,7 +18,10 @@ namespace VideoSwitch
                 Parity = VideoSwitch.Properties.Settings.Default.Parity,
                 StopBits = VideoSwitch.Properties.Settings.Default.StopBits,
                 DataBits = VideoSwitch.Properties.Settings.Default.DataBits,
-                WriteTimeout = (VideoSwitch.Properties.Settings.Default.Timeout * 1000)
+                WriteTimeout = (VideoSwitch.Properties.Settings.Default.Timeout * 1000),
+                RtsEnable = true,
+                DtrEnable = true,
+                Handshake = Handshake.None
             };
         }
 

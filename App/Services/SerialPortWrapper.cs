@@ -20,7 +20,8 @@ namespace VideoSwitch.Services
             try
             {
                 _port.Open();
-                _port.Write(message);                
+                _port.Write(message);
+                _port.Write("\r\n");
             }
             finally
             {

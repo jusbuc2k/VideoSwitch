@@ -30,7 +30,8 @@ namespace VideoSwitch
             var portSvc = new Services.SerialPortWrapper(port);
             var viewModel = new ButtonsViewModel(portSvc);
             var presets = Data.PresetData.GetPresets();
-                        
+
+                       
             foreach (var p in presets)
             {
                 p.Command = new PresetClickCommand(portSvc);
