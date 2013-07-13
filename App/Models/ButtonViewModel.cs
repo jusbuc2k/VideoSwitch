@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace VideoSwitch.Models
 {
-    class ButtonViewModel
+    public class ButtonViewModel : ICommandModel
     {
+        public string Title { get; set; }
+        public string[] Commands { get; set; }
+        public System.Windows.Input.ICommand Command {get;set;}        
     }
 }

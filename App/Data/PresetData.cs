@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,22 +10,32 @@ namespace VideoSwitch.Data
 {
     public static class PresetData
     {
-        public static IEnumerable<SwitchPreset> GetPresets()
+        public static IEnumerable<Preset> GetPresets()
         {
-            var result = new List<SwitchPreset>();
-            var config = VideoSwitch.Properties.Settings.Default.Presets;
-            string[] parts;
+            var result = new List<Preset>();
+            var file = new FileInfo(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "presets.dat"));            
+            
+            string line;
+            string[] parts;            
 
-            foreach (var item in config)
+            if (file.Exists)
             {
-                parts = item.Split('=');
-                result.Add(new SwitchPreset()
+                using (var reader = new StreamReader(file.OpenRead()))
                 {
-                    Title = parts[0],
-                    Commands = parts[1].Split(';')
-                });
+                    while(true)
+                    {
+                        line = reader.ReadLine();
+                        if (line == null)
+                            break;
+                        parts = line.Split(new char[]{'\t'}, StringSplitOptions.RemoveEmptyEntries);
+                        result.Add(new Preset(){
+                            Title = parts[0],
+                            Commands = parts.Skip(1).ToArray()
+                        });
+                    }                   
+                }
             }
-
+                      
             return result;
         }
     }

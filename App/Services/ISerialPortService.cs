@@ -8,6 +8,6 @@ namespace VideoSwitch.Services
 {
     public interface ISerialPortService
     {
-        void SendMessage(string message);
+        void SendMessage(string message);        
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VideoSwitch.Services
 {
-    public class SerialPortClient : ISerialPortService
+    public class SerialPortService : ISerialPortService
     {
-        public SerialPortClient(System.IO.Ports.SerialPort serialPort)
+        public SerialPortService(System.IO.Ports.SerialPort serialPort)
         {
             _port = serialPort;
         }

@@ -26,16 +26,18 @@ namespace VideoSwitch
         {
             InitializeComponent();
 
-            var port = SwitchMessage.CreatePort();
-            var portSvc = new Services.SerialPortWrapper(port);
-            var viewModel = new ButtonsViewModel(portSvc);
+            var port = SerialPortFactory.CreatePort();
+            var portSvc = new Services.SerialPortService(port);
+            var viewModel = new ButtonsViewModel();
             var presets = Data.PresetData.GetPresets();
-
-                       
+                                   
             foreach (var p in presets)
-            {
-                p.Command = new PresetClickCommand(portSvc);
-                viewModel.Buttons.Add(p);
+            {                
+                viewModel.Buttons.Add(new ButtonViewModel(){
+                    Command = new PresetClickCommand(portSvc),
+                    Commands = p.Commands,
+                    Title = p.Title
+                });
             }            
             
             this.DataContext = viewModel;
