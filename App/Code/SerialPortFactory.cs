@@ -7,7 +7,7 @@ using System.IO.Ports;
 
 namespace VideoSwitch
 {
-    public static class SwitchMessage
+    public static class SerialPortFactory
     {
         public static SerialPort CreatePort()
         {
@@ -23,15 +23,6 @@ namespace VideoSwitch
                 DtrEnable = true,
                 Handshake = Handshake.None
             };
-        }
-
-        public static void SendMessage(string message)
-        {
-            using (var port = CreatePort())
-            {
-                port.Open();
-                port.Write(message);
-            }
         }
     }
 }

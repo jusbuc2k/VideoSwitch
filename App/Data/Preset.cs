@@ -5,12 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace VideoSwitch.Models
+namespace VideoSwitch.Data
 {
-    public class SwitchPreset : ICommandModel
+    public class Preset
     {
         public string Title { get; set; }
-        public string[] Commands { get; set; }
-        public ICommand Command { get; set; }
+        public string[] Commands { get; set; }        
     }
 }
